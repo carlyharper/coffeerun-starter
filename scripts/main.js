@@ -2,7 +2,27 @@
 
 //VARIABLES
 $(function(){
+
+    //page has loaded
+    //need to pull the old coffee orders from localStorage
+
     var orders = [];
+
+    var oldOrdersJSON = localStorage.getItem("coffeeOrders");
+    var oldOrders = JSON.parse(oldOrdersJSON);
+
+    if (oldOrders != null) { //needed for when localStorage is empty
+        //carry on as usual
+        orders = oldOrders;  
+    } 
+    orders = oldOrders;
+
+    //show the old orders to the screen
+    var oldOrdersHTML = "";
+    orders.forEach(function(currentOrder){
+        oldOrdersHTML += renderCoffeeOrder(currentOrder);
+    });
+    $('#submittedOrders').append(renderedHTML);
 
     function renderCoffeeOrder(order) {
         var finalHTML = '<div class="order">';
@@ -41,6 +61,12 @@ $(function(){
     //get the renderedHTML to show up in the DOM
     $('#submittedOrders').append(renderedHTML);
     console.log(orders);
+
+    //save the order list to local storage
+    //every time we save a coffee order, it will now save to
+    //local storage
+    var ordersJSON = JSON.stringify(orders);
+    localStorage.setItem("coffeeOrders", ordersJSON);
 
     });
 });
