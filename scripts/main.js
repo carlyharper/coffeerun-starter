@@ -40,7 +40,13 @@ $(function(){
 
     //get the renderedHTML to show up in the DOM
     $('#submittedOrders').append(renderedHTML);
+    console.log(orders);
 
     });
 });
 
+//DELETE
+//visually want a button for each order (x button)
+//think about adding button of class= delete to the span final HTML
+//pop an array
+//$('#submittedOrders).on('click', '.delete', function(){
